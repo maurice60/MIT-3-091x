@@ -41,3 +41,9 @@ be <- function(c, r1, r2, n){(-(c*ec)^2/(4*pi*e0*(r1+r2)))*(1-1/n)}
 Ecry <- function(qp, qm, M, r0, n){-(Na*qp*qm*ec^2*M/(4*pi*e0*r0))*(1-1/n)}
 # Ionic distance given the lattice energy
 ionD <- function(qp, qm, M, ecr, n){(Na*qp*qm*ec^2*M/(4*pi*e0*ecr))*(1-1/n)}
+
+# Week 4
+# Polar covalent bond energy Ea Eb homgeneous covalent bond energy, Xa, Xb electronegativity
+Ep <- function(Ea, Eb, Xa, Xb){sqrt(Ea*Eb)+96.3*(Xa-Xb)^2}
+# Percent Ionic Character Xa, Xb electronegativity
+Ipc <- function(Xa, Xb){100*(1-exp(-(Xa-Xb)^2/4))}
