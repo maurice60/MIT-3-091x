@@ -47,3 +47,5 @@ ionD <- function(qp, qm, M, ecr, n){(Na*qp*qm*ec^2*M/(4*pi*e0*ecr))*(1-1/n)}
 Ep <- function(Ea, Eb, Xa, Xb){sqrt(Ea*Eb)+96.3*(Xa-Xb)^2}
 # Percent Ionic Character Xa, Xb electronegativity
 Ipc <- function(Xa, Xb){100*(1-exp(-(Xa-Xb)^2/4))}
+# Dipole moment
+dm <- function(r1, r2, e1, e2){abs((r1+r2)*(e1-e2))}
