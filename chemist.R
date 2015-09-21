@@ -8,20 +8,41 @@ fCoulomb <- function(q1, q2, r) {
 ePotentialCharge <- function(q1, q2, r) {
   (q1*q2)/(4*pi*e0*r)
 }
-# Energy of a photon given wavelength
-Ephot = function(x){h*c/x}
-# Wavelength of a photon given energy
-wavelength <- function(x){h*c/x}
+# Bohr radius energy level n, atomic number z
+bRadius <- function(n, Z = 1) n^2*h^2*e0/(pi*Z*em*ec^2)
 # Energy of n-th energy level of element z
-En <- function(z, n){-(z^2/n^2)*k}
-# Wavenumber of transition from i-th to f-th energy level
-wavenumber <- function(z, i, f){k*z^2*(1/f^2-1/i^2)/(h*c)}
+En <- function(n, z=1) -(z^2/n^2)*k
+# Energy diff between initial i and final f energe levels
+deltaE <- function(i, f, Z = 1) k*(Z^2)*(1/f^2-1/i^2)
+# Velocity of electron energy level n
+vLevel <- function(n) n*h/(2*pi*em*bRadius(n))
+# Velocity of electron energy level n hit by photon wavelength lambda
+vEject <- function(lambda, n) {
+  sqrt(2*(Ephot.lambda(lambda) + En(n))/em)
+}
+# Energy of a photon given wavelength
+Ephot.lambda = function(lambda){h*c/lambda}
+# Energy of a photon given frequency
+Ephot.nu = function(nu) h*nu
+# Wavelength of a photon given energy
+wavelength <- function(x) h*c/x
+# Wavenumber of a photon given energy
+wavenumber <- function(x) 1/wavelength(x)
 # deBroglie wavelength of particle mass m with given energy
-deBroglie <- function(m, energy){h/(m*sqrt(2*energy/m))}
+deBroglie <- function(m, energy) {
+  p <- sqrt(2*m*energy)
+  h/p
+}
+# Energy required for wavelength lambda
+deBroglieEnergy <- function(m, lambda) {
+  p <- h/lambda
+  p^2/(2*m)
+}
+
 # Energy of particle in box, mass m, length l, energy level n
-Ebox <- function(m, l, n){(h^2*n^2)/(8*m*l^2)}
+Ebox <- function(m, l, n) (h^2*n^2)/(8*m*l^2)
 # Length of box, transition from n1 to n2 with associated energy
-lenBox <- function(m, n1, n2, energy){sqrt((h^2*(n1^2-n2^2))/(8*m*energy))}
+lenBox <- function(m, n1, n2, energy) sqrt((h^2*(n1^2-n2^2))/(8*m*energy))
 
 # week 3
 # Velocity of an ejected photon wl - wavelength of incident photon, be - binding energy
