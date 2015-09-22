@@ -23,7 +23,31 @@ atomicWeight <- function(symbol = '', Z = 0) {
   ifelse(Z == 0, elements[elements$Symbol==symbol,'W'], elements[elements$Z == Z,'W'])
 }
 
-gramMolecularWeight <- function(element, number) {
-  Z <- sapply(element, atomicWeight)
-  sum(Z*number)
+gramMolecularWeight <- function(form) {
+  gmw <- function(element, number) {
+    Z <- sapply(element, atomicWeight)
+    sum(Z*number)
+  }
+  upper <- c('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z')
+  lower <- c('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z')
+  digit <- c('0','1','2','3','4','5','6','7','8','9')
+  ele <- c()
+  dig <- c()
+  sts <- unlist(strsplit(form, ""))
+  nch <- 0
+  for (ch in sts) {
+    if (ch %in% upper) {
+      nch <- nch + 1
+      ele[nch] <- ch
+      dig[nch] = 0
+    }
+    if (ch %in% lower) {
+      cap <- ele[nch]
+      ele[nch] <- paste(cap, ch, sep = "")}
+    if (ch %in% digit) {
+      dig[nch] <- dig[nch]*10 + as.integer(ch)
+    }
+  }
+  dig <- replace(dig, dig==0, 1)
+  gmw(ele, dig)
 }
