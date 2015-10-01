@@ -1,6 +1,7 @@
 source('maths.R')
-elements <- read.table('AtomicWeights.txt')
-names(elements) <- c('Z', 'Symbol', 'Name', 'W')
+# elements <- read.table('AtomicWeights.txt')
+# names(elements) <- c('Z', 'Symbol', 'Name', 'W')
+load('ele.dta')
 h <- 6.626075e-34
 c <- 299792458
 em <- 9.109e-31
