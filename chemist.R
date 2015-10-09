@@ -67,9 +67,12 @@ atRadius <- function(n, m) n^2*h^2*e0/(pi*m*ec^2)
 
 # Week 4
 # Polar covalent bond energy Ea Eb homgeneous covalent bond energy, Xa, Xb electronegativity
-Ep <- function(Ea, Eb, Xa, Xb){sqrt(Ea*Eb)+96.3*(Xa-Xb)^2}
+covalent.energy <- function(Ea, Eb, Xa, Xb) sqrt(Ea*Eb)+96.3*(Xa-Xb)^2
+Ea <- function(Et, Eb, Xa, Xb) (Et - 96.3*(Xa-Xb)^2)^2 / Eb
 # Percent Ionic Character Xa, Xb electronegativity
-Ipc <- function(Xa, Xb){100*(1-exp(-(Xa-Xb)^2/4))}
+ionic.character.pauling <- function(Xa, Xb){100*(1-exp(-(Xa-Xb)^2/4))}
+# percent ionic character expermiental bond energy, charge q separation r
+ionic.character <- function(pExp, r, q) 100*pExp/(r*q)
 # Dipole moment
-dm <- function(r1, r2, e1, e2){abs((r1+r2)*(e1-e2))}
+dipole.moment <- function(r1, r2, e1, e2){abs((r1+r2)*(e1-e2))}
 
