@@ -14,7 +14,11 @@ Na <- 6.022136e23
 k <- (em*ec^4)/(8*h^2*e0^2)
 bohrRadius <- 5.29e-11
 debaye <- 3.3e-30
-
+R.gas <- 8.314510 # Molar gas constant
+k.boltz <- R.gas/Na # Boltzmann constant
+T.K <- function(T.C) {
+  T.C + 273.15
+}
 nMol <- function(mass_g, atomic) mass_g / atomic
 
 atomicWeightAve <- function(weight, abundance) {

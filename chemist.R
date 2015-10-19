@@ -76,3 +76,26 @@ ionic.character <- function(pExp, r, q) 100*pExp/(r*q)
 # Dipole moment
 dipole.moment <- function(r1, r2, e1, e2){abs((r1+r2)*(e1-e2))}
 
+# Week 5
+activation.energy <- function(k.1, T.1, k.2, T.2) k.boltz * log(k.1/k.2) / ((1/T.2) - (1/T.1))
+k.0 <- function(k.r, E.A, T.r) k.r / exp(-E.A/(k.boltz*T.r))
+rate.constant <- function(k_0, E_A, T_K) k_0 * exp(-E_A/(k.boltz*T_K)) 
+
+# Week 6
+
+first.order <- function(C0, t, k) C0*exp(-k*t)
+t.elapsed <- function(C, C0, k) (-1/k)*log(C/C0)
+# Half life
+k.half <- function(t.half) log(2)/t.half
+
+# Second order reactions
+rate.2 <- function(k, C.a, C.b) k*C.a*C.b
+second.order <- function(C0, t, k) {
+  x <- i/C0 + k*t
+  1/x
+}
+t.2.elapsed <- function(C, C0, k) ((1/C)-(1/C0))/k 
+# Second order half life
+half.life <- function(k, C0) 1/(k*C0) 
+
+
